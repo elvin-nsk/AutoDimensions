@@ -40,6 +40,7 @@ Private StartingScale As Double
 
 Private MsgNoObject As String, MsgOnlyNumbers As String, MsgEmpty As String
 Private ScaleText As String, CurrentScaleText As String
+Private QuantityPrefix As String
 
 '===============================================================================
 ' Handlers
@@ -723,10 +724,10 @@ Private Function DrawDimensions( _
                 Else
                     Text = ""
                 End If
-                If Text <> "" And This.Quantity.Value <> "" Then _
+                If Text <> "" And This.Quantity.Value > 0 Then _
                     Text = Text & " - "
-                If This.Quantity.Value <> "" Then _
-                    Text = Text & "Quantit.: " & This.Quantity.Value
+                If This.Quantity.Value > 0 Then _
+                    Text = Text & QuantityPrefix & This.Quantity.Value
                 
                 If Position1.Value = True _
                 Or Position7.Value = True _
@@ -852,10 +853,10 @@ Private Function DrawDimensions( _
                 Else
                     Text = ""
                 End If
-                If Text <> "" And This.Quantity.Value <> "" Then _
+                If Text <> "" And This.Quantity.Value > 0 Then _
                     Text = Text & " - "
-                If This.Quantity.Value <> "" Then _
-                    Text = Text & "quantit.: " & This.Quantity.Value
+                If This.Quantity.Value > 0 Then _
+                    Text = Text & QuantityPrefix & This.Quantity.Value
                 
                 Set InfoScaleQuantity = _
                     ActiveLayer.CreateArtisticText( _
@@ -1027,6 +1028,7 @@ Private Sub Portugues_BR()
     DimensionDistance.ControlTipText = "Distвncia da Cota"
     DimensionTextSize.ControlTipText = "Fonte da Cota"
     Quantity.ControlTipText = "Adicionar Quantitidades e Detalhes"
+    QuantityPrefix = "Quantitat: "
     DimensionLineThickness.ControlTipText = "Linha da Cota"
     ScaleList.ControlTipText = "Selecionar/Incluir Escala"
     
@@ -1089,6 +1091,7 @@ Private Sub Francais_FR()
     DimensionDistance.ControlTipText = "Distance de Quota"
     DimensionTextSize.ControlTipText = "Police de Quota"
     Quantity.ControlTipText = "Ajouter des Quantitйs et des Dйtails"
+    QuantityPrefix = "Quantitй: "
     DimensionLineThickness.ControlTipText = "Ligne de Quota"
     ScaleList.ControlTipText = "Sйlectionner/Inclure l’Йchelle"
     
@@ -1151,6 +1154,7 @@ Private Sub English_US()
     DimensionDistance.ControlTipText = "Distance Quote"
     DimensionTextSize.ControlTipText = "Font Quote"
     Quantity.ControlTipText = "Add Quantities and Details"
+    QuantityPrefix = "Quantity: "
     DimensionLineThickness.ControlTipText = "Line Quote"
     ScaleList.ControlTipText = "Select/Add Scale"
     
@@ -1213,6 +1217,7 @@ Private Sub Espanol_ES()
     DimensionDistance.ControlTipText = "Distancia de Dimensiуn"
     DimensionTextSize.ControlTipText = "Fuente de Dimensiуn"
     Quantity.ControlTipText = "Incluir cantidades y detalles"
+    QuantityPrefix = "Cantidad: "
     DimensionLineThickness.ControlTipText = "Lнnea de Dimensiуn"
     ScaleList.ControlTipText = "Seleccionar/Incluir Escala"
     
@@ -1275,6 +1280,7 @@ Private Sub Russian_RU()
     DimensionDistance.ControlTipText = "Расстояние до размерных линий"
     DimensionTextSize.ControlTipText = "Размер шрифта"
     Quantity.ControlTipText = "Добавить указание количества"
+    QuantityPrefix = "Количество: "
     DimensionLineThickness.ControlTipText = "Толщина размерных линий"
     ScaleList.ControlTipText = "Выбрать масштаб"
     
