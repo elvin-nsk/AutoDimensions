@@ -716,7 +716,7 @@ Private Function DrawDimensions( _
             End If
             
             ' Précision echelle et quantité
-            If OptionScale.Value = True Or This.Quantity.Value <> "" Then
+            If OptionScale.Value = True Or Not This.Quantity.Value = 0 Then
                 Dim décalage As Double
                 
                 If OptionScale.Value = True Then
@@ -760,7 +760,7 @@ Private Function DrawDimensions( _
             Or Position5.Value = True _
             Or Position7.Value = True Then
                 If OptionGroupDimensions.Value = True Then
-                    If OptionScale.Value = True Or This.Quantity.Value <> "" Then
+                    If OptionScale.Value = True Or Not This.Quantity.Value = 0 Then
                         Set Shape = _
                             ActiveDocument.CreateShapeRangeFromArray( _
                                 VerticalDimension, HorizontalDimension, _
@@ -781,7 +781,7 @@ Private Function DrawDimensions( _
             
             If Position2.Value = True Or Position6.Value = True Then
                 If OptionGroupDimensions.Value = True Then
-                    If OptionScale.Value = True Or This.Quantity.Value <> "" Then
+                    If OptionScale.Value = True Or Not This.Quantity.Value = 0 Then
                         Set Shape = _
                             ActiveDocument.CreateShapeRangeFromArray( _
                                 VerticalDimension, TextVertical, _
@@ -800,7 +800,7 @@ Private Function DrawDimensions( _
             
             If Position4.Value = True Or Position8.Value = True Then
                 If OptionGroupDimensions.Value = True Then
-                    If OptionScale.Value = True Or This.Quantity.Value <> "" Then
+                    If OptionScale.Value = True Or Not This.Quantity.Value = 0 Then
                         Set Shape = _
                             ActiveDocument.CreateShapeRangeFromArray( _
                                 HorizontalDimension, TextHorizontal, _
@@ -830,7 +830,7 @@ Private Function DrawDimensions( _
                     VBA.Format( _
                         ShOrign.SizeWidth * ActiveDocument.WorldScale, _
                         "##0.0##" _
-                    ) & "x" _
+                    ) & VBA.ChrW(215) _
                   & VBA.Format( _
                         ShOrign.SizeHeight * ActiveDocument.WorldScale, _
                         "##0.0##" _
@@ -847,7 +847,7 @@ Private Function DrawDimensions( _
             TextHorizontal.Name = DIMENSIONS_STR
                 
             ' Précision echelle et quantité
-            If OptionScale.Value = True Or This.Quantity.Value <> "" Then
+            If OptionScale.Value = True Or Not This.Quantity.Value = 0 Then
                 If OptionScale.Value = True Then
                     Text = ScaleText & ActiveDocument.WorldScale
                 Else
